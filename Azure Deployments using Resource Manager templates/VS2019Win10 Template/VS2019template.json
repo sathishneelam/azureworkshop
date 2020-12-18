@@ -1,0 +1,232 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "administratorLoginName": {
+        "type": "string"
+      },
+      "administratorLoginPassword": {
+        "type": "securestring"
+      }
+    },
+    "variables": {
+      "networkSecurityGroupName": "labvm-nsg",
+      "virtualNetworkName": "labvm-vnet",
+      "addressPrefix": "10.0.0.0/24",
+      "subnetPrefix": "10.0.0.0/24",
+      "subnetName": "lab-subnet",
+      "publicIpAddressName": "lab-pip",
+      "publicIpAddressType": "Dynamic",
+      "dsvmDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
+      "dsvmNetworkInterfaceName": "lab-nic",
+      "virtualMachineName": "lab-vm",
+      "virtualMachineSize": "Standard_D2_v3",
+      "DataScienceVmStorageAccountType": "Standard_LRS",
+      "storageAccountName": "[concat('storage',uniquestring(resourceGroup().id))]",
+      "storageAccountType": "Standard_LRS"
+    },
+    "resources": [
+      {
+        "apiVersion": "2016-09-01",
+        "name": "pid-e843308b-3ce2-42a2-b743-2f21b36a5e68",
+        "type": "Microsoft.Resources/deployments",
+        "properties": {
+          "mode": "Incremental",
+          "template": {
+            "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+            "contentVersion": "1.0.0.0",
+            "resources": []
+          }
+        }
+      },
+      {
+        "name": "[variables('networkSecurityGroupName')]",
+        "type": "Microsoft.Network/networkSecurityGroups",
+        "apiVersion": "2017-06-01",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "securityRules": [
+
+            {
+              "name": "default-allow-rdp",
+              "properties": {
+                "priority": 1030,
+                "protocol": "TCP",
+                "access": "Allow",
+                "direction": "Inbound",
+                "sourceAddressPrefix": "*",
+                "sourcePortRange": "*",
+                "destinationAddressPrefix": "*",
+                "destinationPortRange": "3389"
+              }
+            }
+          ]
+        }
+      },
+      {
+
+        "name": "[variables('virtualNetworkName')]",
+        "type": "Microsoft.Network/virtualNetworks",
+        "apiVersion": "2017-08-01",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+          "[concat('Microsoft.Network/networkSecurityGroups/',variables('networkSecurityGroupName'))]"
+        ],
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "[variables('addressPrefix')]"
+            ]
+          },
+          "subnets": [
+            {
+              "name": "[variables('subnetName')]",
+              "properties": {
+                "addressPrefix": "[variables('subnetPrefix')]"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "[variables('publicIpAddressName')]",
+        "type": "Microsoft.Network/publicIpAddresses",
+        "apiVersion": "2017-08-01",
+        "location": "[resourceGroup().location]",
+        "sku": {
+          "name": "Basic"
+        },
+        "properties": {
+          "publicIpAllocationMethod": "[variables('publicIpAddressType')]",
+          "dnsSettings": {
+            "domainNameLabel": "[variables('dsvmDnsName')]"
+          }
+        }
+      },
+
+      {
+        "name": "[variables('dsvmNetworkInterfaceName')]",
+        "type": "Microsoft.Network/networkInterfaces",
+        "apiVersion": "2016-09-01",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+          "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
+          "[concat('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]"
+        ],
+        "properties": {
+          "ipConfigurations": [
+            {
+              "name": "ipconfig1",
+              "properties": {
+                "subnet": {
+                  "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets/', variables('virtualNetworkName'), variables('subnetName'))]"
+                },
+                "privateIPAllocationMethod": "Dynamic",
+                "publicIpAddress": {
+                  "id": "[resourceId('Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
+                }
+              }
+            }
+          ],
+          "networkSecurityGroup": {
+            "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]"
+          }
+        }
+      },
+      {
+        "name": "[variables('virtualMachineName')]",
+        "type": "Microsoft.Compute/virtualMachines",
+        "apiVersion": "2016-04-30-preview",
+        "location": "[resourceGroup().location]",
+
+        "dependsOn": [
+          "[concat('Microsoft.Network/networkInterfaces/', variables('dsvmnetworkInterfaceName'))]"
+        ],
+        "properties": {
+          "osProfile": {
+            "computerName": "[variables('virtualMachineName')]",
+            "adminUsername": "[parameters('administratorLoginName')]",
+            "adminPassword": "[parameters('administratorLoginPassword')]",
+            "windowsConfiguration": {
+              "provisionVmAgent": "true"
+            }
+          },
+          "hardwareProfile": {
+            "vmSize": "[variables('virtualMachineSize')]"
+          },
+          "storageProfile": {
+            "imageReference": {
+              "publisher": "microsoftvisualstudio",
+              "offer": "visualstudio2019latest",
+              "sku": "vs-2019-ent-latest-win10-n",
+              "version": "latest"
+            },
+            "osDisk": {
+              "createOption": "fromImage",
+              "name": "[concat(variables('virtualMachineName'), '-osdisk')]",
+              "managedDisk": {
+                "storageAccountType": "[variables('DataScienceVmStorageAccountType')]"
+              }
+            },
+            "dataDisks": []
+          },
+          "networkProfile": {
+            "networkInterfaces": [
+              {
+                "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('dsvmnetworkInterfaceName'))]"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "name": "[concat(variables('virtualMachineName'),'/mycustomscriptextension')]",
+        "apiVersion": "2015-05-01-preview",
+        "location": "[resourceGroup().location]",
+        "dependsOn": [
+          "[concat('Microsoft.Compute/virtualMachines/',variables('virtualMachineName'))]"
+        ],
+        "properties": {
+          "publisher": "Microsoft.Compute",
+          "type": "CustomScriptExtension",
+          "typeHandlerVersion": "1.8",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+            "fileUris": [
+              "https://spektratemplates.blob.core.windows.net/deploy-existing-net-apps-windows-containers-modernizing-apps/psscripts.ps1"
+            ],
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File psscripts.ps1')]"
+          }
+        }
+      },
+
+      {
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "[variables('storageAccountName')]",
+        "apiVersion": "2016-01-01",
+        "location": "[resourceGroup().location]",
+        "sku": {
+          "name": "[variables('storageAccountType')]"
+        },
+        "kind": "Storage",
+        "properties": {}
+      }
+
+    ],
+    "outputs": {
+      "LABVM DNS Name": {
+        "type": "string",
+        "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('publicIpAddressName'))).dnsSettings.fqdn]"
+      },
+      "LABVM Admin Username": {
+        "type": "string",
+        "value": "[parameters('administratorLoginName')]"
+      },
+      "LABVM Admin Password": {
+        "type": "string",
+        "value": "[parameters('administratorLoginPassword')]"
+      }
+  
+    }
+  }
