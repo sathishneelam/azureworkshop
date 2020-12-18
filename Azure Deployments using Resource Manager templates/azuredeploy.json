@@ -72,15 +72,15 @@
                 "allOf": [
                   {
                     "field": "Microsoft.Compute/virtualMachines/imageOffer",
-                    "in": [ "WindowsServer" ]
+                    "in": [ "visualstudio2019latest" ]
                   },
                   {
                     "field": "Microsoft.Compute/virtualMachines/imagePublisher",
-                    "in": [ "MicrosoftWindowsServer" ]
+                    "in": [ "microsoftvisualstudio" ]
                   },
                   {
                     "field": "Microsoft.Compute/virtualMachines/imageSku",
-                    "in": [ "2019-Datacenter" ]
+                    "in": [ "vs-2019-ent-latest-win10-n" ]
                   },
                   {
                     "field": "Microsoft.Compute/virtualMachines/imageVersion",
