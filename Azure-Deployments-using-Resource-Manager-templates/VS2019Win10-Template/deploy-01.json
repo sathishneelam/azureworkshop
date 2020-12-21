@@ -156,9 +156,9 @@
           },
           "storageProfile": {
             "imageReference": {
-              "publisher": "microsoftvisualstudio,
-              "offer": "visualstudio2019latest",
-              "sku": "vs-2019-ent-latest-win10-n",
+              "publisher": "MicrosoftVisualStudio",
+              "offer": "VisualStudio",
+              "sku": "VS-2017-Comm-Latest-WS2016",
               "version": "latest"
             },
             "osDisk": {
