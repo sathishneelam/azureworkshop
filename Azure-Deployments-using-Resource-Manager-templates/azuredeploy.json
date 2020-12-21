@@ -48,15 +48,23 @@
           }
         },
         {
-          "allof": [
+          "allOf": [
             {
               "field": "type",
               "equals": "Microsoft.Compute/disks"
             },
             {
               "not": {
-                "field": "Microsoft.Compute/disks/Sku.Tier",
-                "in": [ "Standard" ]
+                "allOf": [
+                  {
+                    "field": "Microsoft.Compute/disks/sku.tier",
+                    "in": [ "Standard"  ]
+                  },
+                  {
+                    "field": "Microsoft.Compute/disks/sku.name",
+                    "in": [ "StandardSSD_LRS" ]
+                  }
+                ]
               }
             }
           ]
