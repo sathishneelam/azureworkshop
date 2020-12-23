@@ -1,0 +1,95 @@
+{
+  "if": {
+    "anyOf": [
+      {
+        "not": {
+          "anyOf": [
+              {
+                "field": "type",
+                "like": "Microsoft.Authorization/roleAssignments"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Sql/servers"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Sql/servers/databases"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Insights/ActionGroups"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Insights/Components"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Resources/deployments"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Web/serverFarms"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Web/sites"
+              },
+              {
+                "field": "type",
+                "like": "Microsoft.Web/sites/config"
+              },                
+              {
+                "field": "type",
+                "like": "Microsoft.Web/sites/hostNameBindings"
+              },                  
+              {
+                "field": "type",
+                "in": [ "Microsoft.Sql/servers/databases", "Microsoft.Insights/ActionGroups", "Microsoft.Insights/Components", "Microsoft.Resources/deployments", "Microsoft.Web/sites/config", "Microsoft.Web/sites/hostNameBindings", "Microsoft.Authorization/roleAssignments", "Microsoft.Sql/servers", "Microsoft.Web/serverFarms", "Microsoft.Web/sites" ]
+              }
+          ]
+        }
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Sql/servers/databases"
+          },
+          {
+            "not": {
+              "allOf": [
+                {
+                  "field": "Microsoft.Sql/servers/databases/sku.name",
+                  "in": [ "GP_Gen5_2" ]
+                },
+                {
+                  "field": "Microsoft.Sql/servers/databases/sku.tier",
+                  "in": [ "GeneralPurpose" ]
+                }
+              ]
+            }
+          }
+        ]
+      },     
+      {
+        "allof": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Web/serverfarms"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Web/serverfarms/sku.name",
+              "in": [ "S1" ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
