@@ -51,24 +51,6 @@
           "allOf": [
             {
               "field": "type",
-              "equals": "Microsoft.Compute/disks"
-            },
-            {
-              "not": {
-                "allOf": [
-                  {
-                    "field": "Microsoft.Compute/disks/sku.tier",
-                    "in": [ "StandardSSD_LRS"  ]
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "field": "type",
               "equals": "Microsoft.Compute/virtualMachines"
             },
             {
