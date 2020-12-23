@@ -58,11 +58,7 @@
                 "allOf": [
                   {
                     "field": "Microsoft.Compute/disks/sku.tier",
-                    "in": [ "Standard"  ]
-                  },
-                  {
-                    "field": "Microsoft.Compute/disks/sku.name",
-                    "in": [ "StandardSSD_LRS" ]
+                    "in": [ "StandardSSD_LRS"  ]
                   }
                 ]
               }
