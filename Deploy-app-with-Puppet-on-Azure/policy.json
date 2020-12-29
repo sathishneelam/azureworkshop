@@ -1,0 +1,122 @@
+{
+  "if": {
+    "anyOf": [
+      {
+        "not": {
+          "anyOf": [
+            {
+              "field": "type",
+              "like": "Microsoft.Compute/disks"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Compute/virtualMachines"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Compute/virtualMachines/extensions"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/networkInterfaces"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/networkSecurityGroups"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/publicIPAddresses"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/virtualNetworks"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Network/virtualNetworks/subnets"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Compute/availabilitySets"
+            },
+            {
+              "field": "type",
+              "like": "Microsoft.Storage/storageAccounts"
+            },
+            {
+              "field": "type",
+              "in": [ "Microsoft.Compute/disks", "Microsoft.Compute/virtualMachines", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Storage/storageAccounts", "Microsoft.Compute/availabilitySets", "Microsoft.Network/virtualNetworks",  "Microsoft.Network/virtualNetworks/subnets" ]
+            }
+          ]
+        }
+      },
+      {
+        "allof": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/disks"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Compute/disks/Sku.Tier",
+              "in": [ "Standard" ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Compute/virtualMachines"
+          },
+          {
+            "not": {
+              "allOf": [
+                {
+                  "field": "Microsoft.Compute/virtualMachines/imageOffer",
+                  "in": [ "UbuntuServer" ]
+                },
+                {
+                  "field": "Microsoft.Compute/virtualMachines/imagePublisher",
+                  "in": [ "canonical" ]
+                },
+                {
+                  "field": "Microsoft.Compute/virtualMachines/imageSku",
+                  "in": [ "16.04.0-LTS" ]
+                }, 
+                {
+                  "field": "Microsoft.Compute/virtualMachines/sku.name",
+                  "in": [ "Standard_D2_v2, Standard_A2" ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "allOf": [
+          {
+            "source": "action",
+            "equals": "Microsoft.Storage/storageAccounts/write"
+          },
+          {
+            "field": "type",
+            "equals": "Microsoft.Storage/storageAccounts"
+          },
+          {
+            "not": {
+              "field": "Microsoft.Storage/storageAccounts/sku.name",
+              "in": [ "Standard_LRS" ]
+            }
+          }
+        ]
+      }
+
+    ]
+  },
+  "then": {
+    "effect": "deny"
+  }
+}
