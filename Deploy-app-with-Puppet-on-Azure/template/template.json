@@ -482,7 +482,7 @@
       },
       "mrpvmDnsName": {
         "type": "string",
-        "value": "[reference(variables('mrpDnsNameForPublicIP')).dnsSettings.fqdn]"
+        "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('mrpDnsNameForPublicIP'))).dnsSettings.fqdn]"
       },      
       "mrpvmUsername": {
           "type": "String",
