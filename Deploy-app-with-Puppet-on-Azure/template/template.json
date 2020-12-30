@@ -71,6 +71,19 @@
   },
   "resources": [
     {
+          "type": "Microsoft.Resources/deployments",
+          "apiVersion": "2016-09-01",
+          "name": "pid-e843308b-3ce2-42a2-b743-2f21b36a5e68",
+          "properties": {
+              "mode": "Incremental",
+              "template": {
+                  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                  "contentVersion": "1.0.0.0",
+                  "resources": []
+              }
+          }
+      },
+    {
       "type": "Microsoft.Storage/storageAccounts",
       "name": "[variables('storageName')]",
       "apiVersion": "2015-06-15",
