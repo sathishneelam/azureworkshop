@@ -466,5 +466,31 @@
         }
       }
     }
-  ]
+  ],
+  "outputs": {
+      "puppetMasterUrl": {
+        "type": "String",
+        "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('pmDnsNameForPublicIP'))).dnsSettings.fqdn]"
+      },      
+      "PuppetMastervmUsername": {
+          "type": "String",
+          "value": "[parameters('pmAdminUsername')]"
+      },
+      "PuppetMastervmPassword": {
+          "type": "String",
+          "value": "[parameters('pmAdminPassword')]"
+      },
+      "mrpvmDnsName": {
+        "type": "string",
+        "value": "[reference(variables('mrpDnsNameForPublicIP')).dnsSettings.fqdn]"
+      },      
+      "mrpvmUsername": {
+          "type": "String",
+          "value": "[parameters('mrpAdminUsername')]"
+      },
+      "mrpvmPassword": {
+          "type": "String",
+          "value": "[parameters('mrpAdminPassword')]"
+      }
+  }
 }
