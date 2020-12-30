@@ -480,6 +480,10 @@
           "type": "String",
           "value": "[parameters('pmAdminPassword')]"
       },
+      "PuppetConsolePassword": {
+          "type": "String",
+          "value": "[parameters('pmConsolePassword')]"
+      },
       "mrpvmDnsName": {
         "type": "string",
         "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses',variables('mrpDnsNameForPublicIP'))).dnsSettings.fqdn]"
