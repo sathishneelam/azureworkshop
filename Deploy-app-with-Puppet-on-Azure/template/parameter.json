@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+        "pmAdminUsername": {
+            "value": "azureuser"
+        },
+        "pmAdminPassword": {
+            "value": "Passw0rd0134"
+        },
+        "mrpAdminUsername": {
+            "value": "azureuser"
+        },
+        "pmDnsNameForPublicIP": {
+            "value": "Passw0rd0134"
+        },
+        "pmConsolePassword": {
+            "value": "Passw0rd0134"
+        },
+         "mrpDnsNameForPublicIP": {
+            "value": "Passw0rd0134"
+        },        
+        "deploymentId": {
+            "value": "GET-DEPLOYMENT-ID"
+        }    
+    }
+}
