@@ -8,6 +8,7 @@
     "Microsoft.Authorization/*/read",
     "Microsoft.Resources/deployments/read",
     "Microsoft.Resources/subscriptions/resourcegroups/read",
+    "Microsoft.Resources/subscriptions/resourceGroups/write",
     "Microsoft.Storage/storageAccounts/*",
     "Microsoft.Web/serverFarms/*",
     "Microsoft.Web/sites/*"
