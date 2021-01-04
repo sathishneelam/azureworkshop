@@ -9,8 +9,8 @@
     "Microsoft.Resources/deployments/read",
     "Microsoft.Resources/subscriptions/resourcegroups/read",
     "Microsoft.Resources/subscriptions/resourcegroups/write",
-    "Microsoft.Resources/deployments/validate/action"
-    "Microsoft.Storage/storageAccounts/write"
+    "Microsoft.Resources/deployments/validate/action",
+    "Microsoft.Storage/storageAccounts/write",
     "Microsoft.Storage/storageAccounts/*",
     "Microsoft.Web/serverFarms/*",
     "Microsoft.Web/sites/*"
