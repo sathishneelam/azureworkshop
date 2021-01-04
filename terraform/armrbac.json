@@ -8,15 +8,9 @@
     "Microsoft.Authorization/*/read",
     "Microsoft.Resources/deployments/read",
     "Microsoft.Resources/subscriptions/resourcegroups/read",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "Microsoft.Resources/subscriptions/resourcegroups/write",
     "Microsoft.Resources/deployments/validate/action",
     "Microsoft.Storage/storageAccounts/write",
-=======
->>>>>>> parent of ba66e64... Rg added in policy and rbac
-=======
->>>>>>> parent of ba66e64... Rg added in policy and rbac
     "Microsoft.Storage/storageAccounts/*",
     "Microsoft.Web/serverFarms/*",
     "Microsoft.Web/sites/*"
