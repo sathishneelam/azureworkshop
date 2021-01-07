@@ -196,7 +196,7 @@
             "fileUris": [
               "https://raw.githubusercontent.com/sathishneelam/azureworkshop/master/Azure-Deployments-using-Resource-Manager-templates/VS2019Win10-Template/scripts/psscripts.ps1"
             ],
-            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File scripts/psscripts.ps1')]"
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File psscripts.ps1')]"
           }
         }
       },
