@@ -17,11 +17,11 @@
       "subnetName": "lab-subnet",
       "publicIpAddressName": "lab-pip",
       "publicIpAddressType": "Dynamic",
-      "dsvmDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
-      "dsvmNetworkInterfaceName": "lab-nic",
+      "labDnsName": "[concat('labvm',uniqueString(resourceGroup().id))]",
+      "labNetworkInterfaceName": "lab-nic",
       "virtualMachineName": "lab-vm",
       "virtualMachineSize": "Standard_D2_v3",
-      "DataScienceVmStorageAccountType": "Standard_LRS",
+      "labVmStorageAccountType": "Standard_LRS",
       "storageAccountName": "[concat('storage',uniquestring(resourceGroup().id))]",
       "storageAccountType": "Standard_LRS"
     },
@@ -99,13 +99,13 @@
         "properties": {
           "publicIpAllocationMethod": "[variables('publicIpAddressType')]",
           "dnsSettings": {
-            "domainNameLabel": "[variables('dsvmDnsName')]"
+            "domainNameLabel": "[variables('labDnsName')]"
           }
         }
       },
 
       {
-        "name": "[variables('dsvmNetworkInterfaceName')]",
+        "name": "[variables('labNetworkInterfaceName')]",
         "type": "Microsoft.Network/networkInterfaces",
         "apiVersion": "2016-09-01",
         "location": "[resourceGroup().location]",
@@ -140,7 +140,7 @@
         "location": "[resourceGroup().location]",
 
         "dependsOn": [
-          "[concat('Microsoft.Network/networkInterfaces/', variables('dsvmnetworkInterfaceName'))]"
+          "[concat('Microsoft.Network/networkInterfaces/', variables('labnetworkInterfaceName'))]"
         ],
         "properties": {
           "osProfile": {
@@ -165,7 +165,7 @@
               "createOption": "fromImage",
               "name": "[concat(variables('virtualMachineName'), '-osdisk')]",
               "managedDisk": {
-                "storageAccountType": "[variables('DataScienceVmStorageAccountType')]"
+                "storageAccountType": "[variables('labVmStorageAccountType')]"
               }
             },
             "dataDisks": []
@@ -173,7 +173,7 @@
           "networkProfile": {
             "networkInterfaces": [
               {
-                "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('dsvmnetworkInterfaceName'))]"
+                "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('labnetworkInterfaceName'))]"
               }
             ]
           }
@@ -194,9 +194,9 @@
           "autoUpgradeMinorVersion": true,
           "settings": {
             "fileUris": [
-              "https://spektratemplates.blob.core.windows.net/deploy-existing-net-apps-windows-containers-modernizing-apps/psscripts.ps1"
+              "https://raw.githubusercontent.com/sathishneelam/azureworkshop/master/Azure-Deployments-using-Resource-Manager-templates/VS2019Win10-Template/scripts/psscripts.ps1"
             ],
-            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File psscripts.ps1')]"
+            "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File VS2019Win10-Template/scripts/psscripts.ps1')]"
           }
         }
       },
