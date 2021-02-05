@@ -1,0 +1,15 @@
+{
+    "Name": "Lab: Configuring a Message-Based Integration Architecture Custom RBAC",
+    "Id": null,
+    "IsCustom": true,
+    "Description": "Lab: Configuring a Message-Based Integration Architecture Custom RBAC",
+    "Actions": [
+      "Microsoft.Authorization/*/read",
+      "Microsoft.Storage/storageAccounts/*",
+      "Microsoft.Resources/deployments/*",
+      "Microsoft.Resources/subscriptions/resourceGroups/read"
+    ],
+    "NotActions": [
+  
+    ]
+  }
