@@ -6,35 +6,35 @@
              "anyOf": [
                    {
                    "field": "type",
-                   "like": "Microsoft.Compute/availabilitySets/*"
+                   "like": "Microsoft.Compute/availabilitySets"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Compute/virtualMachines/*"
+                   "like": "Microsoft.Compute/virtualMachines"
                    }, 
                    {
                    "field": "type",
-                   "like": "Microsoft.ContainerRegistry/registries/*"
+                   "like": "Microsoft.ContainerRegistry/registries"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.ContainerService/managedClusters/*"
+                   "like": "Microsoft.ContainerService/managedClusters"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Network/networkInterfaces/*"
+                   "like": "Microsoft.Network/networkInterfaces"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Network/networkSecurityGroups/*"
+                   "like": "Microsoft.Network/networkSecurityGroups"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Network/publicIPAddresses/*"
+                   "like": "Microsoft.Network/publicIPAddresses"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Network/virtualNetworks/*"
+                   "like": "Microsoft.Network/virtualNetworks"
                    },
                    {
                    "field": "type",
@@ -42,19 +42,19 @@
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Storage/storageAccounts/*"
+                   "like": "Microsoft.Storage/storageAccounts"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Compute/virtualMachines/extensions/*"
+                   "like": "Microsoft.Compute/virtualMachines/extensions"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.ManagedIdentity/userAssignedIdentities/*"
+                   "like": "Microsoft.ManagedIdentity/userAssignedIdentities"
                    },
                    {
                    "field": "type",
-                   "like": "Microsoft.Network/routeTables/*"
+                   "like": "Microsoft.Network/routeTables"
                    },
                    {
                      "field": "type",
@@ -66,7 +66,7 @@
                    },
                    {
                    "field": "type",
-                   "in": ["Microsoft.ContainerService/managedClusters/agentPools", "Microsoft.Resources/subscriptions/resourceGroups", "Microsoft.Network/routeTables", "Microsoft.ManagedIdentity/userAssignedIdentities", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Compute/availabilitySets", "Microsoft.Compute/virtualMachines", "Microsoft.ContainerRegistry/registries", "Microsoft.ContainerService/managedClusters", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Network/virtualNetworks", "Microsoft.Storage/storageAccounts"]
+                   "in": ["Microsoft.ContainerService/managedClusters/agentPools", "Microsoft.Authorization/roleAssignments", "Microsoft.Resources/subscriptions/resourceGroups", "Microsoft.Network/routeTables", "Microsoft.ManagedIdentity/userAssignedIdentities", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Compute/availabilitySets", "Microsoft.Compute/virtualMachines", "Microsoft.ContainerRegistry/registries", "Microsoft.ContainerService/managedClusters", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Network/virtualNetworks", "Microsoft.Storage/storageAccounts"]
                    }
                ]
            }
