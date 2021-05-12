@@ -11,7 +11,11 @@
                    {
                    "field": "type",
                    "like": "Microsoft.Compute/virtualMachines"
-                   }, 
+                   },
+                   {
+                   "field": "type",
+                   "like": "Microsoft.Network/loadBalancers"
+                   },
                    {
                    "field": "type",
                    "like": "Microsoft.ContainerRegistry/registries"
@@ -66,7 +70,7 @@
                    },
                    {
                    "field": "type",
-                   "in": ["Microsoft.ContainerService/managedClusters/agentPools", "Microsoft.Authorization/roleAssignments", "Microsoft.Resources/subscriptions/resourceGroups", "Microsoft.Network/routeTables", "Microsoft.ManagedIdentity/userAssignedIdentities", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Compute/availabilitySets", "Microsoft.Compute/virtualMachines", "Microsoft.ContainerRegistry/registries", "Microsoft.ContainerService/managedClusters", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Network/virtualNetworks", "Microsoft.Storage/storageAccounts"]
+                   "in": ["Microsoft.ContainerService/managedClusters/agentPools", "Microsoft.Network/loadBalancers", "Microsoft.Authorization/roleAssignments", "Microsoft.Resources/subscriptions/resourceGroups", "Microsoft.Network/routeTables", "Microsoft.ManagedIdentity/userAssignedIdentities", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Compute/availabilitySets", "Microsoft.Compute/virtualMachines", "Microsoft.ContainerRegistry/registries", "Microsoft.ContainerService/managedClusters", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Network/virtualNetworks", "Microsoft.Storage/storageAccounts"]
                    }
                ]
            }
