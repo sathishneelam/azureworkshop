@@ -18,6 +18,10 @@
                    },
                    {
                    "field": "type",
+                   "like": "Microsoft.Compute/disks"
+                   },
+                   {
+                   "field": "type",
                    "like": "Microsoft.ContainerRegistry/registries"
                    },
                    {
