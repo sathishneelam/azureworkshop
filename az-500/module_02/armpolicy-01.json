@@ -46,6 +46,18 @@
                    },
                    {
                    "field": "type",
+                   "like": "Microsoft.Network/applicationSecurityGroups"
+                   },
+                   {
+                   "field": "type",
+                   "like": "microsoft.devtestlab/schedules"
+                   },
+                   {
+                   "field": "type",
+                   "like": "Microsoft.Network/azureFirewalls"
+                   },
+                   {
+                   "field": "type",
                    "like": "Microsoft.Authorization/roleAssignments"
                    },
                    {
@@ -74,7 +86,7 @@
                    },
                    {
                    "field": "type",
-                   "in": ["Microsoft.ContainerService/managedClusters/agentPools", "Microsoft.Compute/disks", "Microsoft.Network/loadBalancers", "Microsoft.Authorization/roleAssignments", "Microsoft.Resources/subscriptions/resourceGroups", "Microsoft.Network/routeTables", "Microsoft.ManagedIdentity/userAssignedIdentities", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Compute/availabilitySets", "Microsoft.Compute/virtualMachines", "Microsoft.ContainerRegistry/registries", "Microsoft.ContainerService/managedClusters", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Network/virtualNetworks", "Microsoft.Storage/storageAccounts"]
+                   "in": ["Microsoft.ContainerService/managedClusters/agentPools", "Microsoft.Network/azureFirewalls", "Microsoft.Network/applicationSecurityGroups", "Microsoft.Network/azureFirewalls", "Microsoft.Compute/disks", "Microsoft.Network/loadBalancers", "Microsoft.Authorization/roleAssignments", "Microsoft.Resources/subscriptions/resourceGroups", "Microsoft.Network/routeTables", "Microsoft.ManagedIdentity/userAssignedIdentities", "Microsoft.Compute/virtualMachines/extensions", "Microsoft.Compute/availabilitySets", "Microsoft.Compute/virtualMachines", "Microsoft.ContainerRegistry/registries", "Microsoft.ContainerService/managedClusters", "Microsoft.Network/networkInterfaces", "Microsoft.Network/networkSecurityGroups", "Microsoft.Network/publicIPAddresses", "Microsoft.Network/virtualNetworks", "Microsoft.Storage/storageAccounts"]
                    }
                ]
            }
@@ -89,6 +101,20 @@
            "field": "Microsoft.ContainerRegistry/registries/sku.name",
            "notIn": ["Basic"]
            }
+           ]
+         },
+         {
+           "allof": [
+             {
+               "field": "type",
+               "equals": "Microsoft.Compute/disks"
+             },
+             {
+               "not": {
+                 "field": "Microsoft.Compute/disks/Sku.Tier",
+                 "in": [ "Standard", "Premium" ]
+               }
+             }
            ]
          },
            {
