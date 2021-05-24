@@ -1,4 +1,4 @@
-# Documentation for creating a managed image of a virtual machine
+# Steps to create a shared image of a virtual machine
 
 ## Creating the vm from the azure portal
 
