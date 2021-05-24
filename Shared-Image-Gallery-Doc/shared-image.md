@@ -19,7 +19,7 @@
    |Username|**azureuser**|
    |Password|**Password.!!1**|
    |Public inbound ports|**Allow selected ports**|
-   |Selected inbound ports: **RDP (3389)**|
+   |Selected inbound ports| **RDP (3389)**|
    |Already have a Windows Server license|**No**|
 
     ![](images/vm1.png)
@@ -70,7 +70,7 @@ Under **Create an image definition**, specify the following settings (leave othe
 |Setting|Value|
    |---|---|
    |Image definition name|**give the name as per the lab name**|
-   |SKU **Give the Unique name**|
+   |SKU |**Give the Unique name**|
 
 |Setting|Value|
    |---|---|
