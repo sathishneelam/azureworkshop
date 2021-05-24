@@ -74,8 +74,8 @@ Under **Create an image definition**, specify the following settings (leave othe
 
 |Setting|Value|
    |---|---|
-   |Version number**1.0.1**|
-   |Default replica count **1**|
+   |Version number| **1.0.1**|
+   |Default replica count| **1**|
    |Target regions|**westus, eastus, eastus2, westus2, northeurope, and southeastasia**|
 
    ![](images/image-definition.png)
