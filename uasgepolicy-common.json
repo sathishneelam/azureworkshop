@@ -1,0 +1,38 @@
+[
+    {
+      "ResourceType": "Microsoft.Compute/virtualMachines",
+      "Parameter": [
+        {
+          "Name": "max-cpu-cores",
+          "Value": "2"
+        }
+      ]
+    },
+	{
+      "ResourceType": "Microsoft.Sql/servers/",
+      "Parameter": [
+        {
+          "Name": "max-cpu-cores",
+          "Value": "2"
+        }
+      ]
+    },
+	{
+      "ResourceType": "Microsoft.DBforPostgreSQL/servers",
+      "Parameter": [
+        {
+          "Name": "max-cpu-cores",
+          "Value": "2"
+        }
+      ]
+    },
+	{
+      "ResourceType": "Microsoft.DBforMySQL/servers",
+      "Parameter": [
+        {
+          "Name": "max-cpu-cores",
+          "Value": "2"
+        }
+      ]
+    }
+  ]
