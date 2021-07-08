@@ -1,0 +1,25 @@
+{
+    "AutoPasswordGeneration": true,
+"Users": [{
+    "FirstName": "Adele",
+    "LastName": "Vance",
+    "UPNPrefix": "adelev",
+    "GlobalAdmin": true
+}, 
+{
+    "FirstName": "Debra",
+    "LastName": "Berger",
+    "UPNPrefix": "debrab",
+    "GlobalAdmin": false
+}, 
+{
+    "FirstName": "Diego",
+    "LastName": "Siciliani",
+    "UPNPrefix": "diegos",
+    "GlobalAdmin": false
+}],
+"Licenses": [{
+    "offerId": "796b6b5f-613c-4e24-a17c-eba730d49c02",
+    "quantity": 3
+}]
+}
