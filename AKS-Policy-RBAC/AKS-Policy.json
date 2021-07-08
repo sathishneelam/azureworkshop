@@ -95,7 +95,7 @@
         "allOf": [
           {
             "source": "action",
-            "equals": "Microsoft.Storage/storageAccounts/write"
+            "equals": "Microsoft.Storage/storageAccounts"
           },
           {
             "field": "type",
