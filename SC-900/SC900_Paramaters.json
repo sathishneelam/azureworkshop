@@ -13,6 +13,12 @@
     "GlobalAdmin": false
 }, 
 {
+    "FirstName": "Bianca",
+    "LastName": "Pisani",
+    "UPNPrefix": "biancap",
+    "GlobalAdmin": false
+}, 
+{
     "FirstName": "Diego",
     "LastName": "Siciliani",
     "UPNPrefix": "diegos",
